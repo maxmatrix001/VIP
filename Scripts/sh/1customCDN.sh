@@ -125,8 +125,8 @@ add_ql_extra() {
     else
         echo "开始添加 task:ql extra"
         # 获取token
-        token=$(cat /ql/config/auth.json | jq --raw-output .token)
-        curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"初始化任务","command":"ql extra","schedule":"15 0-23/4 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1624782068473'
+        token=$(cat /ql/config/auth.json | jq -r .token)
+        curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"初始化任务","command":"ql extra","schedule":"15 0-23/4 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1624782068473'
     fi
 }
 # 运行一次 ql extra
